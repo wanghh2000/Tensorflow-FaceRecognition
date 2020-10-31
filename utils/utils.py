@@ -61,7 +61,7 @@ def load_faces(sess, inputs_placeholder, embeddings):
 
                 feed_dict = {inputs_placeholder: input_image}
                 emb_array = sess.run(embeddings, feed_dict=feed_dict)
-
+                print(emb_array)
                 embedding = sklearn.preprocessing.normalize(emb_array).flatten()
                 face_db.append({
                     "name": name,

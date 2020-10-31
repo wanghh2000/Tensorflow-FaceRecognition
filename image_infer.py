@@ -68,6 +68,7 @@ def face_recognition(ifile, IMAGE_SIZE):
         info_name = []
         probs = []
         # 提取图像中的人脸
+        print(faces.shape)
         input_images = np.zeros((faces.shape[0], 112, 112, 3))
         for i, face in enumerate(faces):
             if round(faces[i, 4], 6) > 0.95:
@@ -82,6 +83,7 @@ def face_recognition(ifile, IMAGE_SIZE):
         # 进行人脸识别
         feed_dict = {inputs_placeholder: input_images}
         emb_arrays = face_sess.run(embeddings, feed_dict=feed_dict)
+        print(emb_arrays)
         emb_arrays = sklearn.preprocessing.normalize(emb_arrays)
         for i, embedding in enumerate(emb_arrays):
             embedding = embedding.flatten()
